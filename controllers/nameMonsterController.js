@@ -1,5 +1,10 @@
-app.post("/api/name-monster", (req, res) => {
+export function handleNameMonster(req, res) {
   const { description } = req.body;
+
+  if (!description) {
+    return res.status(400).json({ error: "Missing description" });
+  }
+
   console.log("Received monster description: ", description);
 
   res.json({
@@ -9,4 +14,4 @@ app.post("/api/name-monster", (req, res) => {
       mistral: "Vexclaw",
     },
   });
-});
+}
