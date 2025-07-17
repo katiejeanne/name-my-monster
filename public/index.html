@@ -1,0 +1,62 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Name My Monster</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" type="module" defer></script>
+  </head>
+</html>
+<body>
+  <div class="container my-5">
+    <header class="text-center mb-4">
+      <h1 class="display-4">Name My Monster</h1>
+      <p class="lead">
+        Your pet monster deserves a name worthy of its greatness. Describe your
+        monster below and we'll ask three popular LLMs to suggest a name.
+      </p>
+    </header>
+    <main>
+      <div class="mb-3">
+        <form id="monster-form">
+          <textarea
+            id="prompt"
+            class="form-control"
+            rows="4"
+            maxlength="250"
+            required
+            placeholder="An adorable tiny lizard creature that shoots lasers out of its eyes and loves to eat potatoes."
+          ></textarea>
+          <div id="char-count">0 / 250</div>
+          <button type="submit" class="btn btn-primary mb-4">
+            Name My Monster
+          </button>
+        </form>
+      </div>
+
+      <table id="results" class="table table-striped table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Prompt</th>
+            <th>OpenAI</th>
+            <th>Claude</th>
+            <th>Mistral</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fluffy teddybear with teeth</td>
+            <td>TeddyRex</td>
+            <td>Harold</td>
+            <td>The Destroyer</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
