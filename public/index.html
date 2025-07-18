@@ -2,6 +2,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>Name My Monster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -17,8 +23,10 @@
     <header class="text-center mb-4">
       <h1 class="display-4">Name My Monster</h1>
       <p class="lead">
-        Your pet monster deserves a name worthy of its greatness. Describe your
-        monster below and we'll ask three popular LLMs to suggest a name.
+        Your pet monster deserves a name worthy of its greatness.
+        <br />
+        Describe your monster below and we'll ask three popular LLMs to suggest
+        a name.
       </p>
     </header>
     <main>
@@ -27,13 +35,18 @@
           <textarea
             id="prompt"
             class="form-control"
-            rows="4"
+            rows="2"
             maxlength="250"
             required
             placeholder="An adorable tiny lizard creature that shoots lasers out of its eyes and loves to eat potatoes."
           ></textarea>
           <div id="char-count">0 / 250</div>
-          <button type="submit" class="btn btn-primary mb-4">
+          <button
+            type="submit"
+            class="btn btn-primary mb-4"
+            id="submit-button"
+            disabled
+          >
             Name My Monster
           </button>
         </form>
