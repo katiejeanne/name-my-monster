@@ -22,7 +22,7 @@
   <div class="container my-5">
     <header class="text-center mb-4">
       <h1 class="display-4">Name My Monster</h1>
-      <p class="lead">
+      <p id="lead-intro" class="lead">
         Your pet monster deserves a name worthy of its greatness.
         <br />
         Describe your monster below and we'll ask three popular LLMs to suggest
@@ -30,29 +30,37 @@
       </p>
     </header>
     <main>
-      <div class="mb-3">
-        <form id="monster-form">
-          <textarea
-            id="prompt"
-            class="form-control"
-            rows="2"
-            maxlength="250"
-            required
-            placeholder="An adorable tiny lizard creature that shoots lasers out of its eyes and loves to eat potatoes."
-          ></textarea>
-          <div id="char-count">0 / 250</div>
-          <button
-            type="submit"
-            class="btn btn-primary mb-4"
-            id="submit-button"
-            disabled
-          >
-            Name My Monster
-          </button>
-        </form>
+      <div id="form-container" class="d-flex justify-content-center">
+        <div class="w-100" style="max-width: 800px">
+          <form id="monster-form">
+            <textarea
+              id="prompt"
+              class="form-control"
+              rows="3"
+              maxlength="250"
+              required
+              placeholder="An adorable tiny lizard creature that shoots lasers out of its eyes and loves to eat potatoes."
+            ></textarea>
+            <div id="char-count">0 / 250</div>
+            <p class="form-text text-muted mt-1 text-center">
+              💡 <strong>Note:</strong> Anything you enter here may be stored
+              and displayed publicly. Don’t share personal or sensitive info.
+            </p>
+            <button
+              type="submit"
+              class="btn btn-primary mb-4"
+              id="submit-button"
+              disabled
+            >
+              Name My Monster
+            </button>
+          </form>
+        </div>
       </div>
 
-      <table id="results" class="table table-striped table-bordered">
+      <div id="latestResult" class="mt-4"></div>
+
+      <table id="results" class="table table-striped table-bordered d-none">
         <thead class="table-light">
           <tr>
             <th>Prompt</th>
