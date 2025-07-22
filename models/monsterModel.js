@@ -63,8 +63,11 @@ export function insertMonsterResult(data) {
   );
 }
 
-export function getAllResults() {
-  return db
-    .prepare(`SELECT * FROM monster_results ORDER BY created_at DESC`)
-    .all();
+export function fetchAllResults() {
+  const stmt = db.prepare(`
+    SELECT id, description, openai_name, claude_name, mistral_name, created_at
+    FROM monster_results
+    ORDER BY created_at DESC
+    `);
+  return stmt.all();
 }

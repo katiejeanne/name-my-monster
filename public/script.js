@@ -35,13 +35,33 @@ document
       // Inject latest result
       const latest = document.getElementById("latestResult");
       latest.innerHTML = `
-    <h4 class="fw-bold text-center">Your names:</h4>
-    <ul class="list-unstyled text-center">
-      <li><strong>OpenAI:</strong> ${openai}</li>
-      <li><strong>Claude:</strong> ${claude}</li>
-      <li><strong>Mistral:</strong> ${mistral}</li>
-    </ul>
-  `;
+        <div class="d-flex justify-content-center">
+  <div class="w-100" style="max-width: 600px;">
+    <table class="table table-bordered table-hover mb-4">
+      <thead class="table-primary">
+        <tr>
+          <th colspan="2" class="text-center fs-5">Your Monster's Suggested Names</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>OpenAI</th>
+          <td>Grizzlebeak</td>
+        </tr>
+        <tr>
+          <th>Claude</th>
+          <td>Snorfle</td>
+        </tr>
+        <tr>
+          <th>Mistral</th>
+          <td>Vexclaw</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+        `;
       // Reveal results
       document.getElementById("results").classList.remove("d-none");
 

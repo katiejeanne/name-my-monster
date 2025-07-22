@@ -28,6 +28,10 @@ h1.display-4 {
   margin-top: 0.25rem;
 }
 
+#latest-table-wrapper {
+  max-width: 600px;
+}
+
 #results {
   margin-top: 2rem;
 }
