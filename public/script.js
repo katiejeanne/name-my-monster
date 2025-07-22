@@ -36,39 +36,67 @@ document
       const latest = document.getElementById("latestResult");
       latest.innerHTML = `
         <div class="d-flex justify-content-center">
-  <div class="w-100" style="max-width: 600px;">
-    <table class="table table-bordered table-hover mb-4">
-      <thead class="table-primary">
-        <tr>
-          <th colspan="2" class="text-center fs-5">Your Monster's Suggested Names</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>OpenAI</th>
-          <td>Grizzlebeak</td>
-        </tr>
-        <tr>
-          <th>Claude</th>
-          <td>Snorfle</td>
-        </tr>
-        <tr>
-          <th>Mistral</th>
-          <td>Vexclaw</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <div class="w-100" style="max-width: 600px;">
+            <table class="table table-bordered table-hover mb-4">
+            <thead class="table-primary">
+                <tr>
+                <th colspan="2" class="text-center fs-5">Your Monster's Suggested Names</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th>OpenAI</th>
+                <td>Grizzlebeak</td>
+                </tr>
+                <tr>
+                <th>Claude</th>
+                <td>Snorfle</td>
+                </tr>
+                <tr>
+                <th>Mistral</th>
+                <td>Vexclaw</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
 
         `;
+
       // Reveal results
       document.getElementById("results").classList.remove("d-none");
 
       // Hide the form
       document.getElementById("form-container").classList.add("d-none");
       document.getElementById("lead-intro").classList.add("d-none");
+
+      await loadPastResults();
     } catch (error) {
       console.error("Error submitting form: ", error);
     }
   });
+
+async function loadPastResults() {
+  try {
+    const res = await fetch("/api/allResults");
+    const data = await res.json();
+
+    const tableBody = document.querySelector("#results tbody");
+    tableBody.innerHTML = "";
+
+    data.results.forEach((entry) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+                <td>${entry.description}</td>
+                <td>${entry.openai_name}</td>
+                <td>${entry.claude_name}</td>
+                <td>${entry.mistral_name}</td>
+            `;
+      tableBody.appendChild(row);
+    });
+
+    document.getElementById("results").classList.remove("d-none");
+  } catch (error) {
+    console.error("Error loading  past results:", error);
+  }
+}
