@@ -44,18 +44,9 @@ document
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th>OpenAI</th>
-                <td>Grizzlebeak</td>
-                </tr>
-                <tr>
-                <th>Claude</th>
-                <td>Snorfle</td>
-                </tr>
-                <tr>
-                <th>Mistral</th>
-                <td>Vexclaw</td>
-                </tr>
+                <tr><th>OpenAI</th><td>${openai}</td></tr>
+                <tr><th>Claude</th><td>${claude}</td></tr>
+                <tr><th>Mistral</th><td>${mistral}</td></tr>
             </tbody>
             </table>
         </div>
@@ -65,6 +56,11 @@ document
 
       // Reveal results
       document.getElementById("results").classList.remove("d-none");
+
+      // Clear the form
+      textarea.value = "";
+      charCount.textContent = "0 / 250";
+      submitButton.disabled = true;
 
       // Hide the form
       document.getElementById("form-container").classList.add("d-none");
