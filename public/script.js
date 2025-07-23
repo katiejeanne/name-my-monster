@@ -1,6 +1,18 @@
 const textarea = document.getElementById("prompt");
 const charCount = document.getElementById("char-count");
 const submitButton = document.getElementById("submit-button");
+const showFormBtn = document.getElementById("show-form-button");
+const skipToResultsBtn = document.getElementById("skip-to-results-button");
+
+function showSubmitAnotherButton() {
+  showFormBtn.classList.remove("d-none");
+  skipToResultsBtn.classList.add("d-none");
+}
+
+function showSkipToResultsButton() {
+  skipToResultsBtn.classList.remove("d-none");
+  showFormBtn.classList.add("d-none");
+}
 
 textarea.addEventListener("input", () => {
   const currentLength = textarea.value.length;
@@ -67,6 +79,7 @@ document
       document.getElementById("lead-intro").classList.add("d-none");
 
       await loadPastResults();
+      showSubmitAnotherButton();
     } catch (error) {
       console.error("Error submitting form: ", error);
     }
@@ -96,3 +109,30 @@ async function loadPastResults() {
     console.error("Error loading  past results:", error);
   }
 }
+
+// Show form button behavior
+showFormBtn.addEventListener("click", () => {
+  document.getElementById("form-container").classList.remove("d-none");
+  document.getElementById("lead-intro").classList.remove("d-none");
+  document.getElementById("results").classList.add("d-none");
+  document.getElementById("latestResult").innerHTML = "";
+
+  showSkipToResultsButton();
+
+  textarea.value = "";
+  submitButton.disabled = true;
+  charCount.textContent = "0 / 250";
+});
+
+// Skip-to-results button behavior
+skipToResultsBtn.addEventListener("click", () => {
+  document.getElementById("form-container").classList.add("d-none");
+  document.getElementById("lead-intro").classList.add("d-none");
+  document.getElementById("results").classList.remove("d-none");
+  document.getElementById("latestResult").innerHTML = "";
+
+  showSubmitAnotherButton();
+  loadPastResults();
+});
+
+showSkipToResultsButton();

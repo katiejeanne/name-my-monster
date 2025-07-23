@@ -10,14 +10,33 @@ h1.display-4 {
   color: #5a3e85;
 }
 
+.btn-primary {
+  background-color: #5a3e85;
+  border-color: #5a3e85;
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #4b3370;
+  border-color: #4b3370;
+  color: #fff;
+}
+
+.btn-primary:disabled {
+  background-color: #5a3e85;
+  border-color: #5a3e85;
+  opacity: 0.65;
+  color: #fff;
+}
+
 /* Name My Monster! button */
 #monster-form button {
   font-size: 2rem;
   padding: 0.75rem 2rem;
   display: block;
   margin: 1rem auto;
-  background-color: #5a3e85;
-  border: none;
 }
 
 /* Character counter styling */
