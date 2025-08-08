@@ -28,13 +28,18 @@ export function displayLatestResult(names) {
             <tbody>
                 <tr><th>OpenAI</th><td>${names.openai}</td></tr>
                 <tr><th>Claude</th><td>${names.claude}</td></tr>
-                <tr><th>Mistral</th><td>${names.mistral}</td></tr>
+                <tr><th>Gemini</th><td>${names.gemini}</td></tr>
             </tbody>
             </table>
         </div>
         </div>
 
         `;
+}
+
+export function clearLatestResult() {
+  const latest = document.getElementById("latestResult");
+  if (latest) latest.innerHTML = "";
 }
 
 export function displayResultsTable(entries) {
@@ -46,7 +51,7 @@ export function displayResultsTable(entries) {
                 <td>${entry.description}</td>
                 <td>${entry.openai_name}</td>
                 <td>${entry.claude_name}</td>
-                <td>${entry.mistral_name}</td>
+                <td>${entry.gemini_name}</td>
             `;
     tbody.appendChild(row);
   });

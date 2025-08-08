@@ -12,20 +12,22 @@ import { openai } from "../integrations/openaiClient.js";
 
 export async function generateMonsterName(description) {
   const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
+    model: "gpt-5-mini",
+    reasoning_effort: "minimal",
+    verbosity: "low",
     messages: [
       {
         role: "system",
         content:
-          "You are a playful assistant that invents fun monster names based on a user provided description.",
+          "You are a playful assistant that invents fun monster names based on a user provided description. Output exactly one name, using 1 to 3 words, and no punctuation or extra text—only the raw name itself.",
       },
       {
         role: "user",
         content: `Suggest one concise, catchy name for this monster:\n\n"${description}"`,
       },
     ],
-    max_tokens: 12,
-    temperature: 0.8,
+    max_completion_tokens: 24,
+    temperature: 1,
   });
 
   const raw = response;

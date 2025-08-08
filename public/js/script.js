@@ -42,7 +42,7 @@ document
       const data = await response.json();
       console.log("Response from server: ", data);
 
-      const { openai, claude, mistral } = data.names;
+      const { openai, claude, gemini } = data.names;
 
       // Inject latest result
       const latest = document.getElementById("latestResult");
@@ -58,7 +58,7 @@ document
             <tbody>
                 <tr><th>OpenAI</th><td>${openai}</td></tr>
                 <tr><th>Claude</th><td>${claude}</td></tr>
-                <tr><th>Mistral</th><td>${mistral}</td></tr>
+                <tr><th>Gemini</th><td>${gemini}</td></tr>
             </tbody>
             </table>
         </div>
@@ -99,7 +99,7 @@ async function loadPastResults() {
                 <td>${entry.description}</td>
                 <td>${entry.openai_name}</td>
                 <td>${entry.claude_name}</td>
-                <td>${entry.mistral_name}</td>
+                <td>${entry.gemini_name}</td>
             `;
       tableBody.appendChild(row);
     });

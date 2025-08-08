@@ -26,13 +26,13 @@ db.prepare(
     claude_prompt TEXT,
     claude_response TEXT,
 
-    mistral_name TEXT,
-    mistral_tokens INTEGER,
-    mistral_valid BOOLEAN,
-    mistral_response_time_ms INTEGER,
-    mistral_votes INTEGER DEFAULT 0,
-    mistral_prompt TEXT,
-    mistral_response TEXT,
+    gemini_name TEXT,
+    gemini_tokens INTEGER,
+    gemini_valid BOOLEAN,
+    gemini_response_time_ms INTEGER,
+    gemini_votes INTEGER DEFAULT 0,
+    gemini_prompt TEXT,
+    gemini_response TEXT,
 
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )`

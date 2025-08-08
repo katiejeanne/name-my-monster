@@ -4,6 +4,7 @@ import {
   showError,
   clearError,
   displayLatestResult,
+  clearLatestResult,
   displayResultsTable,
   toggleForm,
   toggleResults,
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     textarea.value = "";
     charCount.textContent = "0 / 250";
     submitButton.disabled = true;
+    clearLatestResult();
   });
 
   toggleResults(false);

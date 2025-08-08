@@ -55,6 +55,11 @@ h1.display-4 {
   margin-top: 2rem;
 }
 
+#prompt::placeholder {
+  color: #ced4da;
+  opacity: 1;
+}
+
 .table th {
   background-color: #e6e2f3;
 }
