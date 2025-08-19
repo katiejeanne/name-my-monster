@@ -61,6 +61,20 @@
 
       <div id="latestResult" class="d-flex justify-content-center"></div>
 
+      <div
+        id="loading"
+        class="d-flex justify-content-center align-items-center d-none"
+        style="min-height: 200px"
+      >
+        <div class="text-center">
+          <div class="spinner-border text-primary mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="lead">Generating monster names...</p>
+          <p class="text-muted">This may take a few seconds</p>
+        </div>
+      </div>
+
       <div class="text-center mt-4" id="action-buttons">
         <button class="btn btn-primary me-2 d-none" id="show-form-button">
           Submit another monster

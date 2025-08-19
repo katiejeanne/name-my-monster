@@ -29,23 +29,37 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const data = await nameMonster(description);
-      if (!data.success) {
-        showError(data.error || "Something went wrong. Please try again.");
-        return;
-      }
-
-      displayLatestResult(data.names);
-      toggleResults(true);
+      document.getElementById("loading").classList.remove("d-none");
       toggleForm(false);
-      toggleButtons({ showFormButton: true, showSkipButton: false });
+      toggleButtons({ showFormButton: false, showSkipButton: false });
 
-      textarea.value = "";
-      charCount.textContent = "0 / 250";
-      submitButton.disabled = true;
+      try {
+        const data = await nameMonster(description);
 
-      const allData = await getAllResults();
-      displayResultsTable(allData.results);
+        if (!data.success) {
+          showError(data.error || "Something went wrong. Please try again.");
+          toggleForm(true);
+          toggleButtons({ showFormButton: false, showSkipButton: true });
+          return;
+        }
+
+        displayLatestResult(data.names);
+        toggleResults(true);
+        toggleButtons({ showFormButton: true, showSkipButton: false });
+
+        textarea.value = "";
+        charCount.textContent = "0 / 250";
+        submitButton.disabled = true;
+
+        const allData = await getAllResults();
+        displayResultsTable(allData.results);
+      } catch (error) {
+        showError("Something went wrong. Please try again.");
+        toggleForm(true);
+        toggleButtons({ showFormButton: false, showSkipButton: true });
+      } finally {
+        document.getElementById("loading").classList.add("d-none");
+      }
     });
 
   document

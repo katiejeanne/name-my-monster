@@ -12,7 +12,7 @@ import { anthropic } from "../integrations/anthropicClient.js";
 
 export async function generateMonsterName(description) {
   const response = await anthropic.messages.create({
-    model: "claude-3-5-sonnet-20241022",
+    model: "claude-3-haiku-20240307",
     max_tokens: 24,
     temperature: 1,
     system:

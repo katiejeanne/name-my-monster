@@ -12,9 +12,7 @@ import { openai } from "../integrations/openaiClient.js";
 
 export async function generateMonsterName(description) {
   const response = await openai.chat.completions.create({
-    model: "gpt-5-mini",
-    reasoning_effort: "minimal",
-    verbosity: "low",
+    model: "gpt-4o-mini",
     messages: [
       {
         role: "system",

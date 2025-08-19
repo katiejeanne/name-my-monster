@@ -60,6 +60,27 @@ h1.display-4 {
   opacity: 1;
 }
 
+.loading-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#loading {
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
 .table th {
   background-color: #e6e2f3;
 }
@@ -68,4 +89,30 @@ h1.display-4 {
 .table th {
   vertical-align: middle;
   text-align: center;
+}
+
+#results th:nth-child(1) {
+  width: 40%;
+} /* Prompt column */
+#results th:nth-child(2) {
+  width: 20%;
+} /* OpenAI column */
+#results th:nth-child(3) {
+  width: 20%;
+} /* Claude column */
+#results th:nth-child(4) {
+  width: 20%;
+} /* Gemini column */
+
+#results td:nth-child(1) {
+  width: 40%;
+}
+#results td:nth-child(2) {
+  width: 20%;
+}
+#results td:nth-child(3) {
+  width: 20%;
+}
+#results td:nth-child(4) {
+  width: 20%;
 }
