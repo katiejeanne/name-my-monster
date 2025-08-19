@@ -1,14 +1,11 @@
-import { openai } from "../integrations/openaiClient.js";
+import OpenAI from "openai";
+import dotenv from "dotenv";
 
-/**
- * Asks OpenAI for a monster name
- * @param {string} description
- * @returns {Promise<{
- * name: string,
- * totalTokens: number,
- * row: object
- * }>}
- */
+dotenv.config();
+
+export const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function generateMonsterName(description) {
   const response = await openai.chat.completions.create({

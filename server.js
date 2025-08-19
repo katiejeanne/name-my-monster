@@ -1,6 +1,6 @@
 import express from "express";
 import rateLimit from "express-rate-limit";
-import apiRoutes from "./api/index.js";
+import apiRoutes from "./routes/index.js";
 import dotenv from "dotenv";
 import { createHourlyLimit } from "./middleware/hourlyLimiter.js";
 import cors from "cors";

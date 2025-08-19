@@ -1,6 +1,6 @@
 import { isAllowed } from "../services/moderationService.js";
 import { generateMonsterName as generateOpenaiName } from "../services/openaiService.js";
-import { insertMonsterResult } from "../models/monsterModel.js";
+import { insertMonsterResult } from "../services/databaseService.js";
 import { generateMonsterName as generateAnthropicName } from "../services/anthropicService.js";
 import { generateMonsterName as generateGeminiName } from "../services/geminiService.js";
 

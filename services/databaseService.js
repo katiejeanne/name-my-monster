@@ -64,10 +64,12 @@ export function insertMonsterResult(data) {
 }
 
 export function fetchAllResults() {
+  const limit = parseInt(process.env.RESULTS_LIMIT) || 100;
   const stmt = db.prepare(`
     SELECT id, description, openai_name, claude_name, gemini_name, created_at
     FROM monster_results
     ORDER BY created_at DESC
+    LIMIT ?
     `);
-  return stmt.all();
+  return stmt.all(limit);
 }

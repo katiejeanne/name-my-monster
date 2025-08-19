@@ -1,16 +1,18 @@
-import { gemini } from "../integrations/geminiClient.js";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import dotenv from "dotenv";
 
-/** Asks Gemini for a monster name
- * @param {string} description
- * @returns {Promise<{
- * name: string,
- * totalTokens: number,
- * raw: object
- * }>}
- */
+dotenv.config();
+
+export const gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export async function generateMonsterName(description) {
-  const model = gemini.getGenerativeModel({ model: "gemini-2.5-flash" });
+  const model = gemini.getGenerativeModel({
+    model: "gemini-2.5-flash",
+    generationConfig: {
+      maxOutputTokens: 24,
+      temperature: 1,
+    },
+  });
 
   const prompt = `You are a playful assistant that invents fun monster names based on a user provided 
   description. Output exactly one name, using 1 to 3 words, and no punctuation or extra text—only the raw name 

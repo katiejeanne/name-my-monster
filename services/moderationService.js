@@ -1,12 +1,11 @@
-import { openai } from "../integrations/openaiClient.js";
+import OpenAI from "openai";
+import dotenv from dotenv;
 
-/**
- * Returns true if the text passes the moderation check,
- * false if any category is flagged.
- *
- * @param {string} text
- * @returns {Promise<boolean>}
- */
+dotenv.config();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function isAllowed(text) {
   const mod = await openai.moderations.create({

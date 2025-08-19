@@ -1,14 +1,11 @@
-import { anthropic } from "../integrations/anthropicClient.js";
+import Anthropic from "@anthropic-ai/sdk";
+import dotenv from "dotenv";
 
-/**
- * Asks Anthropic for a monster name
- * @param {string} description
- * @returns { Promise<{
- * name: string,
- * totalTokens: number,
- * raw: object
- * }>}
- */
+dotenv.config();
+
+export const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 export async function generateMonsterName(description) {
   const response = await anthropic.messages.create({

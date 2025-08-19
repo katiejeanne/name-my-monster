@@ -1,4 +1,4 @@
-import { fetchAllResults } from "../models/monsterModel.js";
+import { fetchAllResults } from "../services/databaseService.js";
 
 export function getAllResults(req, res) {
   try {
