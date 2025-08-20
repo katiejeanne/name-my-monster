@@ -7,9 +7,9 @@ export const gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export async function generateMonsterName(description) {
   const model = gemini.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-1.5-flash",
     generationConfig: {
-      maxOutputTokens: 24,
+      maxOutputTokens: 50,
       temperature: 1,
     },
   });

@@ -3,6 +3,7 @@ import { generateMonsterName as generateOpenaiName } from "../services/openaiSer
 import { insertMonsterResult } from "../services/databaseService.js";
 import { generateMonsterName as generateAnthropicName } from "../services/anthropicService.js";
 import { generateMonsterName as generateGeminiName } from "../services/geminiService.js";
+import { logger } from "../utils/logger.js";
 
 export async function handleNameMonster(req, res, next) {
   try {
@@ -24,11 +25,27 @@ export async function handleNameMonster(req, res, next) {
     }
 
     // Helper function for timing API calls
-    const timeApiCall = async (apiCall, description) => {
+    const timeApiCall = async (apiCall, description, serviceName) => {
       const startMs = Date.now();
-      const result = await apiCall(description);
-      const response_time_ms = Date.now() - startMs;
-      return { ...result, response_time_ms };
+      try {
+        const result = await apiCall(description);
+        const response_time_ms = Date.now() - startMs;
+        logger.tokenUsage(
+          serviceName,
+          result.totalTokens,
+          response_time_ms,
+          true
+        );
+        return { ...result, response_time_ms };
+      } catch (error) {
+        const response_time_ms = Date.now() - startMs;
+        logger.tokenUsage(serviceName, 0, response_time_ms, false);
+        logger.criticalError(`${serviceName} API Call`, error, {
+          description: description.substring(0, 50),
+        });
+
+        throw error;
+      }
     };
 
     // Get names from all services in parallel with individual timing
@@ -52,9 +69,9 @@ export async function handleNameMonster(req, res, next) {
         response_time_ms: gemini_response_time_ms,
       },
     ] = await Promise.all([
-      timeApiCall(generateOpenaiName, description),
-      timeApiCall(generateAnthropicName, description),
-      timeApiCall(generateGeminiName, description),
+      timeApiCall(generateOpenaiName, description, "OpenAI"),
+      timeApiCall(generateAnthropicName, description, "Anthropic"),
+      timeApiCall(generateGeminiName, description, "Gemini"),
     ]);
 
     // Build result record
